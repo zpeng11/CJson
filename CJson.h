@@ -15,11 +15,17 @@ enum
     CJSON_NUMBER_TOO_BIG,
     CJSON_INVALID_STRING_CHAR,
     CJSON_INVALID_STRING_ESCAPE,
-    CJSON_INVALID_STRING_MISS_QUOTATION
+    CJSON_INVALID_STRING_MISS_QUOTATION,
+    CJSON_INVALID_UNICODE_HEX,
+    CJSON_INVALID_UNICODE_SURROGATE,
+    CJSON_MISS_KEY,
+    CJSON_MISS_COLON,
+    CJSON_MISS_COMMA_OR_SQUARE_BRACKET,
+    CJSON_MISS_COMMA_OR_CURLY_BRACKET
 };
 
 typedef enum{
-    CJSON_NULL, CJSON_TRUE, CJSON_FALSE, CJSON_NUMBER,CJSONS_STRING, CJSON_ARRAY, CJSON_OBJECT
+    CJSON_NULL, CJSON_TRUE, CJSON_FALSE, CJSON_NUMBER, CJSON_STRING, CJSON_ARRAY, CJSON_OBJECT
 }cjson_type;
 
 struct cjson_value
@@ -51,5 +57,15 @@ double cjson_get_number(cjson_value * v);
 void cjson_set_number(cjson_value * v, double n);
 
 const char * cjson_get_string(cjson_value * v);
+size_t cjson_get_string_length(cjson_value * v);
 void cjson_set_string(cjson_value *v, const char *str, size_t str_len);
+
+void cjson_set_array(cjson_value *v, size_t capacity);
+size_t cjson_get_array_size(cjson_value *v);
+size_t cjson_get_array_capacity(cjson_value *v);
+cjson_value *cjson_get_array_element(cjson_value *v, size_t index);
+
+void cjson_set_object(cjson_value *v, size_t capacity);
+
+char *cjson_stringify(const cjson_value *v, size_t *length);
 #endif /*CJSON_H*/

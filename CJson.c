@@ -333,7 +333,7 @@ int parse_object(context *c, cjson_value *v)
             break;
         }
         c->json++;
-        if (ret = parse_value(c, &(m.v)) != CJSON_PARSE_OK)
+        if ((ret = parse_value(c, &(m.v))) != CJSON_PARSE_OK)
         {
             free(m.key);
             break;
@@ -491,7 +491,7 @@ static void stringify_value(context *c, const cjson_value *v)
     case CJSON_NUMBER:
         c->top -= 32 - sprintf(context_push(c, 32), "%.17g", v->u.n);
         break;
-    case CJSONS_STRING:
+    case CJSON_STRING:
         stringify_string(c, v->u.s.s, v->u.s.len);
         break;
     case CJSON_ARRAY:
@@ -563,20 +563,20 @@ void cjson_set_number(cjson_value *v, double n)
 
 const char *cjson_get_string(cjson_value *v)
 {
-    assert(v != NULL && v->type == CJSONS_STRING);
+    assert(v != NULL && v->type == CJSON_STRING);
     return v->u.s.s;
 }
 
 size_t cjson_get_string_length(cjson_value *v)
 {
-    assert(v != NULL && v->type == CJSONS_STRING);
+    assert(v != NULL && v->type == CJSON_STRING);
     return v->u.s.len;
 }
 
 void cjson_set_string(cjson_value *v, const char *str, size_t str_len)
 {
     cjson_free(v);
-    v->type = CJSONS_STRING;
+    v->type = CJSON_STRING;
     v->u.s.len = str_len;
     if (str == NULL)
     {
@@ -627,7 +627,7 @@ void cjson_free(cjson_value *v)
     assert(v != NULL);
     switch (v->type)
     {
-    case CJSONS_STRING:
+    case CJSON_STRING:
         free(v->u.s.s);
         break;
     case CJSON_ARRAY:
