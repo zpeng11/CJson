@@ -11,7 +11,6 @@ void test_stringify_basic() {
     
     // Test null
     cjson_init(&v);
-    v.type = CJSON_NULL;
     json_str = cjson_stringify(&v, &length);
     assert(strcmp(json_str, "null") == 0);
     assert(length == 4);

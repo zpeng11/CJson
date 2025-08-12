@@ -288,7 +288,7 @@ static int parse_array(context *c, cjson_value *v)
         }
     }
     //cases that failed
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         cjson_free((cjson_value *)context_pop(c, sizeof(cjson_value)));
     }
@@ -362,7 +362,7 @@ int parse_object(context *c, cjson_value *v)
         }
     }
     //cases that failed
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         cjson_member *m = (cjson_member *)context_pop(c, sizeof(cjson_member));
         free(m->key);
@@ -496,7 +496,7 @@ static void stringify_value(context *c, const cjson_value *v)
         break;
     case CJSON_ARRAY:
         PUTC(c, '[');
-        for (int i = 0; i < v->u.a.size; i++)
+        for (size_t i = 0; i < v->u.a.size; i++)
         {
             if (i > 0)
                 PUTC(c, ',');
@@ -506,7 +506,7 @@ static void stringify_value(context *c, const cjson_value *v)
         break;
     case CJSON_OBJECT:
         PUTC(c, '{');
-        for (int i = 0; i < v->u.o.size; i++)
+        for (size_t i = 0; i < v->u.o.size; i++)
         {
             if(i>0)
                 PUTC(c, ',');
@@ -536,7 +536,7 @@ char *cjson_stringify(const cjson_value *v, size_t *length)
     return c.stack;
 }
 
-int cjson_get_boolean(cjson_value *v)
+int cjson_get_boolean(const cjson_value *v)
 {
     assert(v != NULL && (v->type == CJSON_TRUE || v->type == CJSON_FALSE));
     return (v->type == CJSON_TRUE) ? 1 : 0;
@@ -548,7 +548,7 @@ void cjson_set_boolean(cjson_value *v, int bool)
     v->type = bool ? CJSON_TRUE : CJSON_FALSE;
 }
 
-double cjson_get_number(cjson_value *v)
+double cjson_get_number(const cjson_value *v)
 {
     assert(v != NULL && v->type == CJSON_NUMBER);
     return v->u.n;
@@ -561,13 +561,13 @@ void cjson_set_number(cjson_value *v, double n)
     v->u.n = n;
 }
 
-const char *cjson_get_string(cjson_value *v)
+const char *cjson_get_string(const cjson_value *v)
 {
     assert(v != NULL && v->type == CJSON_STRING);
     return v->u.s.s;
 }
 
-size_t cjson_get_string_length(cjson_value *v)
+size_t cjson_get_string_length(const cjson_value *v)
 {
     assert(v != NULL && v->type == CJSON_STRING);
     return v->u.s.len;
@@ -596,12 +596,12 @@ void cjson_set_array(cjson_value *v, size_t capacity)
     v->u.a.a = (capacity > 0) ? (cjson_value *)malloc(sizeof(cjson_value) * capacity) : NULL;
 }
 
-size_t cjson_get_array_size(cjson_value *v)
+size_t cjson_get_array_size(const cjson_value *v)
 {
     assert(v != NULL && v->type == CJSON_ARRAY);
     return v->u.a.size;
 }
-size_t cjson_get_array_capacity(cjson_value *v)
+size_t cjson_get_array_capacity(const cjson_value *v)
 {
     assert(v != NULL && v->type == CJSON_ARRAY);
     return v->u.a.capacity;
@@ -631,14 +631,14 @@ void cjson_free(cjson_value *v)
         free(v->u.s.s);
         break;
     case CJSON_ARRAY:
-        for (int i = 0; i < v->u.a.size; i++)
+        for (size_t i = 0; i < v->u.a.size; i++)
         {
             cjson_free(&(v->u.a.a[i]));
         }
         free(v->u.a.a);
         break;
     case CJSON_OBJECT:
-        for (int i = 0; i < v->u.o.size; i++)
+        for (size_t i = 0; i < v->u.o.size; i++)
         {
             free(v->u.o.m[i].key);
             cjson_free(&(v->u.o.m[i].v));

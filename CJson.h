@@ -50,19 +50,19 @@ struct cjson_member
 int cjson_parse(cjson_value * v, const char * json_str);
 void cjson_free(cjson_value * v);
 
-int cjson_get_boolean(cjson_value * v);
+int cjson_get_boolean(const cjson_value * v);
 void cjson_set_boolean(cjson_value * v, int bool);
 
-double cjson_get_number(cjson_value * v);
+double cjson_get_number(const cjson_value * v);
 void cjson_set_number(cjson_value * v, double n);
 
-const char * cjson_get_string(cjson_value * v);
-size_t cjson_get_string_length(cjson_value * v);
+const char * cjson_get_string(const cjson_value * v);
+size_t cjson_get_string_length(const cjson_value * v);
 void cjson_set_string(cjson_value *v, const char *str, size_t str_len);
 
 void cjson_set_array(cjson_value *v, size_t capacity);
-size_t cjson_get_array_size(cjson_value *v);
-size_t cjson_get_array_capacity(cjson_value *v);
+size_t cjson_get_array_size(const cjson_value *v);
+size_t cjson_get_array_capacity(const cjson_value *v);
 cjson_value *cjson_get_array_element(cjson_value *v, size_t index);
 
 void cjson_set_object(cjson_value *v, size_t capacity);
