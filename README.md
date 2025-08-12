@@ -2,7 +2,6 @@
 
 [![CI](https://github.com/zpeng11/CJson/actions/workflows/ci.yml/badge.svg)](https://github.com/zpeng11/CJson/actions/workflows/ci.yml)
 [![Release](https://github.com/zpeng11/CJson/actions/workflows/release.yml/badge.svg)](https://github.com/zpeng11/CJson/actions/workflows/release.yml)
-[![GitHub release](https://img.shields.io/github/v/release/zpeng11/CJson)](https://github.com/zpeng11/CJson/releases)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![C Standard](https://img.shields.io/badge/C-C99-blue.svg)](https://en.wikipedia.org/wiki/C99)
 [![CMake](https://img.shields.io/badge/CMake-3.15+-green.svg)](https://cmake.org/)
