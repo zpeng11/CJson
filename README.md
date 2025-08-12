@@ -1,9 +1,8 @@
 # CJson
 
-[![CI](https://github.com/eleven/CJson/actions/workflows/ci.yml/badge.svg)](https://github.com/eleven/CJson/actions/workflows/ci.yml)
-[![Release](https://github.com/eleven/CJson/actions/workflows/release.yml/badge.svg)](https://github.com/eleven/CJson/actions/workflows/release.yml)
-[![GitHub release](https://img.shields.io/github/v/release/eleven/CJson)](https://github.com/eleven/CJson/releases)
-[![codecov](https://codecov.io/gh/eleven/CJson/branch/master/graph/badge.svg)](https://codecov.io/gh/eleven/CJson)
+[![CI](https://github.com/zpeng11/CJson/actions/workflows/ci.yml/badge.svg)](https://github.com/zpeng11/CJson/actions/workflows/ci.yml)
+[![Release](https://github.com/zpeng11/CJson/actions/workflows/release.yml/badge.svg)](https://github.com/zpeng11/CJson/actions/workflows/release.yml)
+[![GitHub release](https://img.shields.io/github/v/release/zpeng11/CJson)](https://github.com/zpeng11/CJson/releases)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![C Standard](https://img.shields.io/badge/C-C99-blue.svg)](https://en.wikipedia.org/wiki/C99)
 [![CMake](https://img.shields.io/badge/CMake-3.15+-green.svg)](https://cmake.org/)
@@ -28,7 +27,7 @@ A lightweight, high-performance JSON parsing and generation library written in C
 
 The easiest way to get CJson is to download pre-built releases from GitHub:
 
-1. Go to the [Releases page](https://github.com/eleven/CJson/releases)
+1. Go to the [Releases page](https://github.com/zpeng11/CJson/releases)
 2. Download the archive for your platform:
    - **Linux**: `cjson-linux-vX.X.X.tar.gz`
    - **macOS**: `cjson-macos-vX.X.X.tar.gz`

@@ -111,50 +111,6 @@ jobs:
         cd build
         ctest --output-on-failure -C Debug
 
-  coverage:
-    name: Code Coverage
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y cmake build-essential lcov
-    
-    - name: Configure CMake
-      run: |
-        mkdir build
-        cd build
-        cmake .. -DCJSON_BUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS="--coverage"
-    
-    - name: Build
-      run: |
-        cd build
-        cmake --build . --config Debug
-    
-    - name: Test
-      run: |
-        cd build
-        ctest --output-on-failure -C Debug
-    
-    - name: Generate coverage report
-      run: |
-        cd build
-        lcov --capture --directory . --output-file coverage.info
-        lcov --remove coverage.info '/usr/*' --output-file coverage.info
-        lcov --list coverage.info
-    
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        file: build/coverage.info
-        flags: unittests
-        name: codecov-umbrella
-        fail_ci_if_error: false
-
-  static-analysis:
     name: Static Analysis
     runs-on: ubuntu-latest
     
